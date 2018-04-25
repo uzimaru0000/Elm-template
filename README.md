@@ -3,10 +3,10 @@
 ## Initialize
 ```
 $ npm i
-$ elm-make
+$ elm install
 ```
 
 ## Development
 ```
-$ npm run start
+$ npm start
 ```
