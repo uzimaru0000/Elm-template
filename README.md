@@ -3,7 +3,7 @@
 ## Initialize
 ```
 $ npm i
-$ elm install
+$ elm-package install
 ```
 
 ## Development
