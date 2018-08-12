@@ -11,12 +11,12 @@ import Expect exposing (Expectation)
 
 (===) : a -> a -> () -> Expectation
 (===) a b _ =
-    Expect.equal a a
+    Expect.equal a b
 
 
 (!==) : a -> a -> () -> Expectation
 (!==) a b _ =
-    Expect.notEqual a a
+    Expect.notEqual a b
 
 
 infix 8 =>
