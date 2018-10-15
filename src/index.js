@@ -2,7 +2,9 @@
 
 require('./index.html');
 
-const Elm = require('./Elm/Main.elm');
+const Elm = require('./Elm/Main.elm').Elm;
 const main = document.getElementById('main');
 
-const app = Elm.Main.embed(main);
+const app = Elm.Main.init({
+    node: main
+});

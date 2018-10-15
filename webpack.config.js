@@ -5,7 +5,7 @@ module.exports = {
         app: './src/index.js'
     },
     output: {
-        path: `${__dirname}/docs`,
+        path: `${__dirname}/dist`,
         filename: '[name].js'
     },
     module: {
@@ -22,7 +22,14 @@ module.exports = {
             {
                 test: /\.elm$/,
                 exclude: [ /node_modules/, /elm-stuff/ ],
-                use: 'elm-webpack-loader'
+                use: [
+                    {
+                        loader: 'elm-webpack-loader',
+                        options: {
+                            debug: true
+                        },
+                    }
+                ]
             }
         ]
     },
