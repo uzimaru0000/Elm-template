@@ -1,5 +1,7 @@
 'use strict'
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
     entry: {
         app: './src/index.js'
@@ -12,12 +14,23 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/, /elm-stuff/ ],
                 use: 'file-loader?name=[name].[ext]'
             },
             {
-                test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    "css-loader",
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.png$/,
+                exclude: [ /node_modules/, /elm-stuff/ ],
+                use: 'file-loader?name=[name].[ext]'
             },
             {
                 test: /\.elm$/,
@@ -33,8 +46,17 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "css/style.css",
+            chunkFilename: "css/[id].css"
+        })
+    ],
     devServer: {
         inline: true,
-        stats: 'errors-only'
+        stats: 'errors-only',
+        historyApiFallback: {
+            index: '/'
+        }
     }
 };
